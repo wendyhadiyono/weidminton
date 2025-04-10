@@ -1,0 +1,17 @@
+PANDUAN INSTALASI WEIDMINTON
+
+1. Unduh file WeidMinton dengan format (.zip) dari halaman GitHub Pages atau melalui GitHub WeidMinton
+2. Ekstrak file (.zip) WeidMinton
+3. Pindahkan folder root "weidminton" ke root dokumen server lokal atau ke hosting pilihan Anda
+4. Buka file "Constant.php" yang berada di folder "app/Config/Constant.php";
+5. Ubah isi informasi berikut:
+    a. BASE_URL untuk alamat web Anda
+    b. DB untuk koneksi database Anda, silahkan disesuaikan dengan konfigurasi database Anda
+6. Buka file "script.js" yang berada di folder "public/js/script.js"
+7. Pada bagian atas file tersebut ubah informasi constant BASE_URL sesuai dengan alamat web Anda
+8. Jika sudah selesai, buka browser dan jalankan:
+    a. Jika melalui server lokal ketik "http://localhostanda/weidminton/public/
+    b. Jika melalui hosting, atur alamat root domain Anda untuk mengakses folder public
+9. Klik link Autentikasi yang berada pada navigasi bawah di beranda
+10. Masuk ke dasbor admin dengan mengetik "admin" untuk ID admin dan "admin" untuk kata sandi. Ini bisa diubah nanti di halaman Profil Admin
+11. Selesai

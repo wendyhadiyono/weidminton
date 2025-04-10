@@ -1,0 +1,20 @@
+{
+    "name": "wendy/weidminton",
+    "description": "Pengelola Klub Badminton",
+    "type": "project",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Wendy",
+            "email": "wendyhdiyono@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/" 
+        }
+    }
+}
