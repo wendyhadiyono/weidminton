@@ -120,7 +120,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>
@@ -135,7 +135,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div id="errorUbahAnggota" class="alert alert-warning alert-dismissible fade show" role="alert" style="display:none"></div>
+                                    <div id="errorUbahAnggota" class="alert alert-danger alert-dismissible fade show" role="alert" style="display:none"></div>
                                     <form id="formUbahAnggota" method="post">
                                         <input type="hidden" name="id_anggota" id="id_anggota">
                                         <div class="input-group mb-3">
@@ -170,7 +170,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>

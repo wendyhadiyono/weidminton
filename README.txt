@@ -8,7 +8,7 @@ PANDUAN SAYA DALAM MENULIS KODE UNTUK WEIDMINTON
 6. Pemberian nama untuk fungsi di controller menggunakan format fungsi() atau nama_fungsi()
 7. Pemberian nama untuk fungsi di model menggunakan format fungsi() atau namaFungsi()
 8. Pemberian nama untuk variabel biasa menggunakan format $namavariabel atau $nama_variabel
-9. Panduan singkatan yang digunakan untuk id dan nama tabel di database: 
+9. Panduan singkatan yang digunakan untuk id pada tabel di database: 
     a. Singkatan [ta] untuk transaksi anggota
     b. Singkatan [tb] untuk transaksi bola
     c. Singkatan [tll] untuk transaksi lainnya
@@ -17,5 +17,5 @@ PANDUAN SAYA DALAM MENULIS KODE UNTUK WEIDMINTON
     f. Singkatan [pk] untuk profil klub
     g. Singkatan [aa] untuk absensi anggota
     h. Singkatan [abl] untuk absensi bola dan lapangan
-    i. Singkatan [nta] untuk nominal transaksi anggota
+    i. Singkatan [pm] untuk paket main
 10. Panduan lainnya akan ditambahkan seiring berkembangnya aplikasi

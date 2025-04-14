@@ -76,16 +76,7 @@
                                                     <td><?= format_tanggal($absensi['tanggal_absensi']) ?></td>
                                                     <td><?= $absensi['total_anggota'] ?> orang</td>
                                                     <td><?= $absensi['bola_terpakai'] ?> pcs</td>
-                                                    <td>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Pilih </button>
-                                                            <ul class="dropdown-menu">
-                                                                <li><a href="<?= BASEURL ?>/admin/transaksi_anggota/ubah_nominal/<?= $nta['id_nta'] ?>" class="dropdown-item tombolUbahNTA" data-id-nta="<?= $nta['id_nta'] ?>" data-bs-toggle="modal" data-bs-target="#modalUbahNTA">Ubah</a></li>
-                                                                <li><a href="<?= BASEURL ?>/admin/transaksi_anggota/hapus_nominal/<?= $nta['id_nta'] ?>" class="dropdown-item tombolHapusNTA" data-id-nta="<?= $nta['id_nta'] ?>">Hapus</a></li>
-                                                            </ul>
-                                                        </div>
-                                                        <a href="<?= BASEURL ?>/admin/absensi/detail/<?= $absensi['tanggal_absensi'] ?>" class="btn btn-info tombolDetailAbsensi" data-tanggal-absensi="<?= $absensi['tanggal_absensi'] ?>" data-bs-toggle="modal" data-bs-target="#">Detail</a>
-                                                    </td>
+                                                    <td><a href="<?= BASEURL ?>/admin/absensi/detail/<?= $absensi['tanggal_absensi'] ?>" class="btn btn-info tombolDetailAbsensi" data-tanggal-absensi="<?= $absensi['tanggal_absensi'] ?>" data-bs-toggle="modal" data-bs-target="#">Detail</a></td>
                                                 </tr>
                                                 <?php } ?>
                                             </tbody>
@@ -153,7 +144,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>
@@ -172,7 +163,7 @@
                                     </ol>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Tutup</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
                                 </div>
                             </div>
                         </div>

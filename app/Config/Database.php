@@ -25,7 +25,7 @@ class Database {
     private $pass = DB_PASS;
     private $dbname = DB_NAME;
 
-    private $dbh;
+    public $dbh;
     private $stmt;
 
     public function  __construct() {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 10, 2025 at 09:56 PM
+-- Generation Time: Apr 14, 2025 at 08:55 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -64,14 +64,14 @@ CREATE TABLE `anggota` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nominal_transaksi_anggota`
+-- Table structure for table `paket_main`
 --
 
-CREATE TABLE `nominal_transaksi_anggota` (
-  `id_nta` int(11) NOT NULL,
-  `nominal` varchar(255) NOT NULL,
+CREATE TABLE `paket_main` (
+  `id_pm` int(11) NOT NULL,
   `jenis` varchar(255) NOT NULL,
-  `jumlah_main` int(11) NOT NULL
+  `jumlah_main` int(11) NOT NULL,
+  `harga` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,15 +86,17 @@ CREATE TABLE `profil_admin` (
   `email` varchar(50) NOT NULL,
   `id_admin` varchar(50) NOT NULL,
   `kata_sandi` varchar(50) NOT NULL,
-  `file_avatar` varchar(50) NOT NULL
+  `file_avatar` varchar(50) NOT NULL,
+  `token_tautan` varchar(255) DEFAULT NULL,
+  `masa_berlaku` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `profil_admin`
 --
 
-INSERT INTO `profil_admin` (`id_pa`, `nama`, `email`, `id_admin`, `kata_sandi`, `file_avatar`) VALUES
-(1, 'Admin', 'admin@email.com', 'admin', 'admin', 'avatar_admin.png');
+INSERT INTO `profil_admin` (`id_pa`, `nama`, `email`, `id_admin`, `kata_sandi`, `file_avatar`, `token_tautan`, `masa_berlaku`) VALUES
+(1, 'Admin', 'nama@email.com', 'admin', 'admin', 'aset/avatar_admin.png', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,7 @@ CREATE TABLE `profil_klub` (
 --
 
 INSERT INTO `profil_klub` (`id_pk`, `nama_klub`, `kota_asal`, `kas_awal`, `logo_klub`, `gambar_sampul`) VALUES
-(1, 'PB Benben', 'Singkawang', '0', 'favicon.png', 'bg-header.jpg');
+(1, 'PB WeidMinton', 'Singkawang', '0', 'aset/favicon.png', 'aset/sampul.jpg');
 
 -- --------------------------------------------------------
 
@@ -127,7 +129,7 @@ INSERT INTO `profil_klub` (`id_pk`, `nama_klub`, `kota_asal`, `kas_awal`, `logo_
 CREATE TABLE `transaksi_anggota` (
   `id_ta` int(11) NOT NULL,
   `nama_ta` varchar(255) NOT NULL,
-  `nominal_ta` varchar(255) NOT NULL,
+  `harga_ta` varchar(255) NOT NULL,
   `tanggal_ta` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -154,7 +156,7 @@ CREATE TABLE `transaksi_bola` (
 CREATE TABLE `transaksi_lainnya` (
   `id_tll` int(11) NOT NULL,
   `keterangan_tll` varchar(255) NOT NULL,
-  `nominal_tll` varchar(255) NOT NULL,
+  `harga_tll` varchar(255) NOT NULL,
   `tanggal_tll` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -195,10 +197,10 @@ ALTER TABLE `anggota`
   ADD PRIMARY KEY (`id_anggota`);
 
 --
--- Indexes for table `nominal_transaksi_anggota`
+-- Indexes for table `paket_main`
 --
-ALTER TABLE `nominal_transaksi_anggota`
-  ADD PRIMARY KEY (`id_nta`);
+ALTER TABLE `paket_main`
+  ADD PRIMARY KEY (`id_pm`);
 
 --
 -- Indexes for table `profil_admin`
@@ -244,25 +246,25 @@ ALTER TABLE `transaksi_lapangan`
 -- AUTO_INCREMENT for table `absensi_anggota`
 --
 ALTER TABLE `absensi_anggota`
-  MODIFY `id_aa` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_aa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `absensi_bola_lapangan`
 --
 ALTER TABLE `absensi_bola_lapangan`
-  MODIFY `id_abl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_abl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `anggota`
 --
 ALTER TABLE `anggota`
-  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_anggota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `nominal_transaksi_anggota`
+-- AUTO_INCREMENT for table `paket_main`
 --
-ALTER TABLE `nominal_transaksi_anggota`
-  MODIFY `id_nta` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `paket_main`
+  MODIFY `id_pm` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `profil_admin`
@@ -280,25 +282,25 @@ ALTER TABLE `profil_klub`
 -- AUTO_INCREMENT for table `transaksi_anggota`
 --
 ALTER TABLE `transaksi_anggota`
-  MODIFY `id_ta` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `transaksi_bola`
 --
 ALTER TABLE `transaksi_bola`
-  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tb` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi_lainnya`
 --
 ALTER TABLE `transaksi_lainnya`
-  MODIFY `id_tll` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tll` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `transaksi_lapangan`
 --
 ALTER TABLE `transaksi_lapangan`
-  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_tl` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

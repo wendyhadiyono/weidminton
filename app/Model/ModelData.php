@@ -27,10 +27,10 @@ class ModelData {
 
     public function totalKas() {
         $this->db->query("SELECT kas_awal FROM profil_klub WHERE id_pk='1'");
-        $pk = $this->db->single();
-        $kas_awal = $pk['kas_awal'];
+        $profil_klub = $this->db->single();
+        $kas_awal = $profil_klub['kas_awal'];
 
-        $this->db->query("SELECT SUM(nominal_ta) AS total_pemasukan FROM transaksi_anggota");
+        $this->db->query("SELECT SUM(harga_ta) AS total_pemasukan FROM transaksi_anggota");
         $ta = $this->db->single();
         $pemasukan_ta = $ta['total_pemasukan'];
 
@@ -42,7 +42,7 @@ class ModelData {
         $tl = $this->db->single();
         $pengeluaran_tl = $tl['pengeluaran_tl'];
     
-        $this->db->query("SELECT SUM(nominal_tll) AS pengeluaran_tll FROM transaksi_lainnya");
+        $this->db->query("SELECT SUM(harga_tll) AS pengeluaran_tll FROM transaksi_lainnya");
         $tll = $this->db->single();
         $pengeluaran_tll = $tll['pengeluaran_tll'];
         

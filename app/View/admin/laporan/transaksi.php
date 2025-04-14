@@ -44,16 +44,16 @@
                 if (!empty($data['transaksi'])) {
                     foreach($data['transaksi'] as $transaksi) {
                         if ($transaksi['jenis'] == 'Anggota') {
-                            $saldo_berjalan += $transaksi['nominal'];
+                            $saldo_berjalan += $transaksi['harga'];
                         } else {
-                            $saldo_berjalan -= $transaksi['nominal'];
+                            $saldo_berjalan -= $transaksi['harga'];
                         }
                 ?>
                 <tr>
                     <td class="text-center"><?= date('d', strtotime($transaksi['tanggal'])) ?></td>
                     <td><?= $transaksi['keterangan'] ?></td>
                     <td><?= $transaksi['jenis'] ?></td>
-                    <td class="text-end"><?= format_uang($transaksi['nominal']) ?></td>
+                    <td class="text-end"><?= format_uang($transaksi['harga']) ?></td>
                     <td class="text-end"><?= format_uang($saldo_berjalan) ?></td>
                 </tr>
                 <?php } } else { ?>
@@ -94,7 +94,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                    <a id="linkUnduh" class="btn btn-primary" href="#" download="laporan_transaksi.png">Unduh Gambar</a>
+                    <a id="linkUnduh" class="btn btn-primary" href="#" download="Laporan_Transaksi_<?= format_bulan($data['bulan']) ?>_<?= $data['tahun'] ?>.png">Unduh Gambar</a>
                 </div>
             </div>
         </div>

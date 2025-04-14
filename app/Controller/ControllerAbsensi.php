@@ -20,20 +20,15 @@ use App\Config\Controller;
 
 class ControllerAbsensi extends Controller {
     public function absensi() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total bola dan lapangan
         $total_bola = $this->model('ModelData')->totalBola();
         $total_lapangan = $this->model('ModelData')->totalLapangan();
 
-        // Pemanggilan "ModelAnggota" untuk menampilkan semua anggota
         $anggota = $this->model('ModelAnggota')->tampilSemua();
-        
-        // Pemanggilan "ModelAbsensi" untuk menampilkan semua absensi
+
         $absensi = $this->model('ModelAbsensi')->tampilSemua();
 
         $data = [
@@ -54,7 +49,7 @@ class ControllerAbsensi extends Controller {
     public function tambah_absensi() {
         $id_anggota = $_POST['id_anggota'] ?? [];
         
-        if (empty($id_anggota) || $_POST['bola_terpakai'] == NULL || $_POST['tanggal_absensi'] == NULL) {
+        if ($id_anggota == NULL || $_POST['bola_terpakai'] == NULL || $_POST['tanggal_absensi'] == NULL) {
             $res = [
                 'status' => 422,
                 'pesan' => 'Data wajib dilengkapi!'
@@ -69,7 +64,7 @@ class ControllerAbsensi extends Controller {
         if ($tambah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Absensi telah ditambahkan!'
+                'pesan' => 'Absensi telah ditambahkan'
             ];
             echo json_encode($res);
 
@@ -91,7 +86,7 @@ class ControllerAbsensi extends Controller {
         if ($detail_absensi) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data berhasil ditampilkan sesuai tanggal absensi!',
+                'pesan' => 'Data berhasil ditampilkan sesuai tanggal absensi',
                 'data' => $detail_absensi
             ];
             echo json_encode($res);

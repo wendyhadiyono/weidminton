@@ -8,21 +8,21 @@
                     </nav>
 
 					<?php if (isset($_SESSION['pesan_gagal'])) { ?>
-						<div class="alert alert-danger alert-dismissible fade show" role="alert">
-							<?php
-							echo $_SESSION['pesan_gagal'];
-							unset($_SESSION['pesan_gagal']);
-							?>
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div>
-						<?php } elseif (isset($_SESSION['pesan_berhasil'])) { ?>
-							<div class="alert alert-warning alert-dismissible fade show" role="alert">
-							<?php
-							echo $_SESSION['pesan_berhasil'];
-							unset($_SESSION['pesan_berhasil']);
-							?>
-							<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-						</div>
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						<?php
+						echo $_SESSION['pesan_gagal'];
+						unset($_SESSION['pesan_gagal']);
+						?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
+					<?php } elseif (isset($_SESSION['pesan_berhasil'])) { ?>
+						<div class="alert alert-warning alert-dismissible fade show" role="alert">
+						<?php
+						echo $_SESSION['pesan_berhasil'];
+						unset($_SESSION['pesan_berhasil']);
+						?>
+						<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+					</div>
 					<?php } ?>
 
 					<div class="row">
@@ -116,7 +116,7 @@
 									<div id="croppie-container"></div>
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
 									<button type="button" class="btn btn-success" id="tombolCrop">Crop</button>
 								</div>
 							</div>

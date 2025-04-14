@@ -20,19 +20,15 @@ use App\Config\Controller;
 
 class ControllerAdmin extends Controller {
     public function index() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total kas, anggota, bola dan lapangan
         $total_kas = $this->model('ModelData')->totalKas();
         $total_anggota = $this->model('ModelData')->totalAnggota();
         $total_bola = $this->model('ModelData')->totalBola();
         $total_lapangan = $this->model('ModelData')->totalLapangan();
 
-        // Pemanggilan "ModelLaporan" untuk menampilkan pemasukan dan pengeluaran bulan ini
         $bulan = date("m");
         $tahun = date("Y");
         $periode = "$tahun-$bulan";
@@ -40,11 +36,9 @@ class ControllerAdmin extends Controller {
         $total_pemasukan = $arus_kas['total_pemasukan_bulan_ini'];
         $total_pengeluaran = $arus_kas['total_pengeluaran_bulan_ini'];
 
-        // Pemanggilan "ModelLaporan" untuk menampilkan jumlah transaksi bulan ini
         $transaksi_bulan_ini = $this->model('ModelLaporan')->transaksiBulanIni($periode);
         $jumlah_transaksi = $transaksi_bulan_ini['jumlah_transaksi'];
 
-        // Pemanggilan "ModelLaporan" untuk menampilkan 7 transaksi terakhir
         $transaksi_terakhir = $this->model('ModelLaporan')->transaksiTerakhir();
         $tujuh_transaksi_terakhir = $transaksi_terakhir['tujuh_transaksi_terakhir'];
 
@@ -66,6 +60,6 @@ class ControllerAdmin extends Controller {
 
         $this->view("admin/header", $data);
         $this->view("admin/index", $data);
-        $this->view("admin/footer");
+        $this->view("admin/footer", $data);
     }
 }

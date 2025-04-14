@@ -51,4 +51,23 @@ class ModelProfil {
 
         return $this->db->rowCount();
     }
+
+    public function kirim($data) {
+        $this->db->query("UPDATE profil_admin SET token_tautan = :token_tautan, masa_berlaku = :masa_berlaku WHERE email = :email");
+        $this->db->bind("token_tautan", $data['token_tautan']);
+        $this->db->bind("masa_berlaku", $data['masa_berlaku']);
+        $this->db->bind("email", $data['email']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
+
+    public function ubahSandiBaru($data) {
+        $this->db->query("UPDATE profil_admin SET kata_sandi = :kata_sandi, token_tautan = NULL, masa_berlaku = NULL WHERE token_tautan = :token_tautan AND id_pa = 1");
+        $this->db->bind("kata_sandi", $data['kata_sandi']);
+        $this->db->bind("token_tautan", $data['token_tautan']);
+        $this->db->execute();
+
+        return $this->db->rowCount();
+    }
 }

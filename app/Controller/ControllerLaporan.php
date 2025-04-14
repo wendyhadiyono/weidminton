@@ -20,10 +20,8 @@ use App\Config\Controller;
 
 class ControllerLaporan extends Controller {
     public function laporan() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
         $data = [
@@ -38,10 +36,8 @@ class ControllerLaporan extends Controller {
     }
 
     public function sisa_main() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelAnggota" untuk menampilkan semua anggota
         $anggota = $this->model('ModelAnggota')->tampilSemua();
 
         $data = [
@@ -56,10 +52,8 @@ class ControllerLaporan extends Controller {
     }
 
     public function transaksi() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelLaporan" untuk 
         $bulan = $_POST['bulan'] ?? null;
         $tahun = $_POST['tahun'] ?? null;
         $periode = "$tahun-$bulan";

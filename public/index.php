@@ -29,6 +29,7 @@ use App\Controller\ControllerAnggota;
 use App\Controller\ControllerAutentikasi;
 use App\Controller\ControllerBeranda;
 use App\Controller\ControllerLaporan;
+use App\Controller\ControllerPaketMain;
 use App\Controller\ControllerPengaturan;
 use App\Controller\ControllerProfil;
 use App\Controller\ControllerTransaksiAnggota;
@@ -47,6 +48,8 @@ Router::add("POST", "/admin/profil/ubah_sandi", ControllerProfil::class, "ubah_s
 // Admin > Pengaturan
 Router::add("GET", "/admin/pengaturan", ControllerPengaturan::class, "pengaturan", [AuthMiddleware::class]);
 Router::add("POST", "/admin/pengaturan/ubah", ControllerPengaturan::class, "ubah_profil", [AuthMiddleware::class]);
+Router::add("POST", "/admin/pengaturan/cadangkan", ControllerPengaturan::class, "cadangkan_data", [AuthMiddleware::class]);
+Router::add("POST", "/admin/pengaturan/hapus", ControllerPengaturan::class, "hapus_data", [AuthMiddleware::class]);
 
 // Admin > Anggota
 Router::add("GET", "/admin/anggota", ControllerAnggota::class, "anggota", [AuthMiddleware::class]);
@@ -65,18 +68,19 @@ Router::add("GET", "/admin/laporan", ControllerLaporan::class, "laporan", [AuthM
 Router::add("GET", "/admin/laporan/sisa_main", ControllerLaporan::class, "sisa_main", [AuthMiddleware::class]);
 Router::add("POST", "/admin/laporan/transaksi", ControllerLaporan::class, "transaksi", [AuthMiddleware::class]);
 
+// Admin > Paket Main
+Router::add("GET", "/admin/paket_main", ControllerPaketMain::class, "paket_main", [AuthMiddleware::class]);
+Router::add("POST", "/admin/paket_main/tambah", ControllerPaketMain::class, "tambah_paket", [AuthMiddleware::class]);
+Router::add("POST", "/admin/paket_main/detail", ControllerPaketMain::class, "detail_paket", [AuthMiddleware::class]);
+Router::add("POST", "/admin/paket_main/ubah", ControllerPaketMain::class, "ubah_paket", [AuthMiddleware::class]);
+Router::add("POST", "/admin/paket_main/hapus", ControllerPaketMain::class, "hapus_paket", [AuthMiddleware::class]);
+
 // Admin > Transaksi Anggota
 Router::add("GET", "/admin/transaksi_anggota", ControllerTransaksiAnggota::class, "transaksi_anggota", [AuthMiddleware::class]);
 Router::add("POST", "/admin/transaksi_anggota/tambah", ControllerTransaksiAnggota::class, "tambah_ta", [AuthMiddleware::class]);
 Router::add("POST", "/admin/transaksi_anggota/detail", ControllerTransaksiAnggota::class, "detail_ta", [AuthMiddleware::class]);
 Router::add("POST", "/admin/transaksi_anggota/ubah", ControllerTransaksiAnggota::class, "ubah_ta", [AuthMiddleware::class]);
 Router::add("POST", "/admin/transaksi_anggota/hapus", ControllerTransaksiAnggota::class, "hapus_ta", [AuthMiddleware::class]);
-
-// Admin > Transaksi Anggota > Nominal Transaksi Anggota
-Router::add("POST", "/admin/transaksi_anggota/tambah_nominal", ControllerTransaksiAnggota::class, "tambah_nta", [AuthMiddleware::class]);
-Router::add("POST", "/admin/transaksi_anggota/detail_nominal", ControllerTransaksiAnggota::class, "detail_nta", [AuthMiddleware::class]);
-Router::add("POST", "/admin/transaksi_anggota/ubah_nominal", ControllerTransaksiAnggota::class, "ubah_nta", [AuthMiddleware::class]);
-Router::add("POST", "/admin/transaksi_anggota/hapus_nominal", ControllerTransaksiAnggota::class, "hapus_nta", [AuthMiddleware::class]);
 
 // Admin > Transaksi Bola
 Router::add("GET", "/admin/transaksi_bola", ControllerTransaksiBola::class, "transaksi_bola", [AuthMiddleware::class]);
@@ -103,6 +107,10 @@ Router::add("POST", "/admin/transaksi_lainnya/hapus", ControllerTransaksiLainnya
 Router::add("GET", "/autentikasi", ControllerAutentikasi::class, "index", []);
 Router::add("POST", "/autentikasi/masuk", ControllerAutentikasi::class, "masuk", []);
 Router::add("GET", "/autentikasi/keluar", ControllerAutentikasi::class, "keluar", []);
+Router::add("GET", "/autentikasi/pulihkan_sandi", ControllerAutentikasi::class, "pulihkan_sandi", []);
+Router::add("POST", "/autentikasi/kirim_link", ControllerAutentikasi::class, "kirim_link", []);
+Router::add("GET", "/autentikasi/sandi_baru", ControllerAutentikasi::class, "sandi_baru", []);
+Router::add("POST", "/autentikasi/ubah_sandi", ControllerAutentikasi::class, "ubah_sandi", []);
 
 // Beranda
 Router::add("GET", "/", ControllerBeranda::class, "index", []);

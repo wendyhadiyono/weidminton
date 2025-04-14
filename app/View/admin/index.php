@@ -10,7 +10,7 @@
 						<div class="col-12">
 							<div class="card border">
 								<div class="card-body">
-									<h5 class="mb-0">Selamat datang di halaman dasbor admin, <?= $data['profil_admin']['nama'] ?>!</h5>
+									<h5 class="mb-0"><i class="align-middle me-1" data-feather="info"></i> <span class="align-middle">Halo, <?= $data['profil_admin']['nama'] ?>!  Selamat datang di halaman dasbor admin</span></h5>
 								</div>
 							</div>
 						</div>
@@ -174,7 +174,7 @@
 														<span class="badge bg-danger">Pengeluaran</span>
 														<?php } ?>
 													</td>
-													<td class="text-end"><?= format_rupiah($transaksi['nominal']) ?></td>
+													<td class="text-end"><?= format_rupiah($transaksi['harga']) ?></td>
 												</tr>
 												<?php } } else { ?>
 												<tr>

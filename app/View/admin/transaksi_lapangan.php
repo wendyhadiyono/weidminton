@@ -112,7 +112,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>
@@ -154,7 +154,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>

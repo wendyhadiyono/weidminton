@@ -8,8 +8,9 @@
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body text-center">
-							<h4 style="font-weight:500;">WeidMinton</h4>
+							<h3 style="font-weight:500;" class="mb-0">WeidMinton</h3>
 							<p class="text-muted">versi <?= VERSI ?></p>
+							<p class="mt-3"><a href="https://github.com/wendyhadiyono/weidminton/tags" target="_blank" class="btn btn-info">Cek Pembaruan</a></p>
 							<p class="mt-3">Membantu mengelola klub badminton kalian seperti mengelola kas, data anggota, data transaksi hingga melakukan absensi dan lain sebagainya secara digital.</p>
 						</div>
 					</div>
@@ -19,15 +20,18 @@
 			<footer class="footer border-top">
 				<div class="container-fluid">
 					<div class="row text-muted">
-						<div class="col-6 text-start">
+						<div class="col-4 text-start">
 							<p class="mb-0">
 								<p class="text-muted">&copy; 2024 - <?= date("Y") ?></p>
 							</p>
 						</div>
-						<div class="col-6 text-end">
+						<div class="col-8 text-end">
 							<ul class="list-inline">
 								<li class="list-inline-item">
-									<p class="text-muted"><a data-bs-toggle="modal" data-bs-target="#tentang" target="_blank">Tentang</a></p>
+									<p class="text-muted"><a href="" data-bs-toggle="modal" data-bs-target="#tentang" target="_blank">Tentang</a></p>
+								</li>
+								<li class="list-inline-item">
+									<p class="text-muted"><a href="https://wendyhadiyono.github.io/weidminton" target="_blank">Dokumentasi</a></p>
 								</li>
 								<li class="list-inline-item">
 									<p class="text-muted"><a href="https://github.com/wendyhadiyono" target="_blank">GitHub</a></p>
@@ -48,7 +52,6 @@
 	<script src="<?= BASEURL ?>/js/app.js"></script>
     <script src="<?= BASEURL ?>/js/script.js"></script>
 	<script>
-		// Array yang berisi ID tabel
 		var tabelIds = ['#tabelAnggota','#tabelAbsensi','#tabelTA', '#tabelTB', '#tabelTL', '#tabelTLL'];
 		
 		var options = {
@@ -66,6 +69,32 @@
 
 		tabelIds.forEach(function(tabelId) {
 			new DataTable(tabelId, options);
+		});
+		</script>
+		<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			new Chart(document.getElementById("chartjs-dashboard-pie"), {
+				type: "pie",
+				data: {
+					labels: ["Pemasukan", "Pengeluaran"],
+					datasets: [{
+						data: [<?= $data['total_pemasukan'] ?>, <?= $data['total_pengeluaran'] ?>], // Masukkan data ke dalam chart
+						backgroundColor: [
+							window.theme.success,
+							window.theme.danger
+						],
+						borderWidth: 5
+					}]
+				},
+				options: {
+					responsive: !window.MSInputMethodContext,
+					maintainAspectRatio: false,
+					legend: {
+						display: false
+					},
+					cutoutPercentage: 75
+				}
+			});
 		});
 	</script>
 </body>

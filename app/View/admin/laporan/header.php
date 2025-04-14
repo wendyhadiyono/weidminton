@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/aset/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap">
     <link rel="stylesheet" href="<?= BASEURL ?>/css/app.css">
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1 text-white"><?= $data['profil_klub']['nama_klub'] ?></span>
             <div class="d-flex">
-                <a href="<?= BASEURL ?>/admin/laporan" class="btn btn-danger me-2">Kembali</a>
+                <a href="<?= BASEURL ?>/admin/laporan" class="btn btn-secondary me-2">Kembali</a>
                 <button id="tombolUnduh" class="btn btn-primary">Unduh</button>
             </div>
         </div>

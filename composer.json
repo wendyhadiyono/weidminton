@@ -1,6 +1,6 @@
 {
     "name": "wendy/weidminton",
-    "description": "Pengelola Klub Badminton",
+    "description": "Asisten Klub Badminton",
     "type": "project",
     "license": "Apache-2.0",
     "authors": [
@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=8"
+        "php": ">=8",
+        "phpmailer/phpmailer": "^6.9.2"
     },
     "autoload": {
         "psr-4": {

@@ -54,13 +54,8 @@ class ModelTransaksiBola {
     public function detail($id_tb) {
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_tb = :id_tb");
         $this->db->bind('id_tb', $id_tb);
-        $tb = $this->db->single();
         
-        if ($tb) {
-            return $tb;
-        } else {
-            return null;
-        }
+        return $this->db->single();
     }
 
     public function ubah($data) {

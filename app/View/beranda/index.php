@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/x-icon" href="img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="img/aset/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:ital,wght@0,300..900;1,300..900&family=Outfit:wght@100..900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="<?= BASEURL ?>/css/bootstrap.css">
@@ -114,7 +114,7 @@
                     if ($anggota['sisa_main'] > 0 && $anggota['jenis_kelamin'] == 'Laki-laki') {
             ?>
             <li class="list-group-item d-flex align-items-center">
-                <img src="<?= BASEURL ?>/img/avatar_l.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
+                <img src="<?= BASEURL ?>/img/aset/avatar_l.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
                 <div>
                     <p class="mb-0"><?= $anggota['nama'] ?></p>
                     <small><i><?= $anggota['domisili'] ?></i></small>
@@ -122,7 +122,7 @@
             </li>
             <?php } elseif ($anggota['sisa_main'] <= 0 && $anggota['jenis_kelamin'] == 'Laki-laki') { ?>
             <li class="list-group-item d-flex align-items-center">
-                <img src="<?= BASEURL ?>/img/avatar_l.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
+                <img src="<?= BASEURL ?>/img/aset/avatar_l.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
                 <div>
                     <p class="mb-0"><?= $anggota['nama'] ?></p>
                     <small><i><?= $anggota['domisili'] ?></i></small>
@@ -130,7 +130,7 @@
             </li>
             <?php } elseif ($anggota['sisa_main'] > 0 && $anggota['jenis_kelamin'] == 'Perempuan') { ?>
             <li class="list-group-item d-flex align-items-center">
-                <img src="<?= BASEURL ?>/img/avatar_p.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
+                <img src="<?= BASEURL ?>/img/aset/avatar_p.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
                 <div>
                     <p class="mb-0"><?= $anggota['nama'] ?></p>
                     <small><i><?= $anggota['domisili'] ?></i></small>
@@ -138,7 +138,7 @@
             </li>
             <?php } elseif($anggota['sisa_main'] <= 0 && $anggota['jenis_kelamin'] == 'Perempuan') { ?>
             <li class="list-group-item d-flex align-items-center">
-                <img src="<?= BASEURL ?>/img/avatar_p.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
+                <img src="<?= BASEURL ?>/img/aset/avatar_p.png" class="rounded-circle img-thumbnail me-3" width="70" alt="avatar">
                 <div>
                     <p class="mb-0"><?= $anggota['nama'] ?></p>
                     <small><i><?= $anggota['domisili'] ?></i></small>
@@ -146,7 +146,7 @@
             </li>
             <?php } } } else { ?>
             <li class="list-group-item">
-                <h6 class="text-center">Belum ada anggota.</h6>
+                <p class="text-center">Belum ada anggota.</p>
             </li>
             <?php } ?>
         </ul>
@@ -178,14 +178,14 @@
                         <th class="text-center" style="width:10%">#</th>
                         <th style="width:30%">Tanggal</th>
                         <th style="width:30%">Nama</th>
-                        <th  class="text-end" style="width:30%">Nominal</th>
+                        <th  class="text-end" style="width:30%">Harga</th>
                     </tr>
                     <?php
                     $no = 1;
                     if(!empty($data['ta'])) {
                         foreach($data['ta'] as $ta) {
                             $tanggal = format_tanggal($ta['tanggal_ta']);
-                            $rupiah = format_rupiah($ta['nominal_ta']);
+                            $rupiah = format_rupiah($ta['harga_ta']);
                     ?>
                     <tr>
                         <td class="text-center"><?= $no++ ?>.</td>
@@ -195,7 +195,7 @@
                     </tr>
                     <?php } } else { ?>
                     <tr>
-                        <td colspan="4" class="text-center"><h6>Belum ada transaksi anggota.</h6></td>
+                        <td colspan="4" class="text-center"><p>Belum ada transaksi anggota.</p></td>
                     </tr>
                     <?php } ?>
                 </table>
@@ -224,7 +224,7 @@
                 </tr>
                 <?php } } else { ?>
                     <tr>
-                        <td colspan="4" class="text-center"><h6>Belum ada transaksi bola.</h6></td>
+                        <td colspan="4" class="text-center"><p>Belum ada transaksi bola.</p></td>
                     </tr>
                 <?php } ?>
                 </table>
@@ -253,7 +253,7 @@
                     </tr>
                     <?php } } else { ?>
                     <tr>
-                        <td colspan="4" class="text-center"><h6>Belum ada transaksi lapangan.</h6></td>
+                        <td colspan="4" class="text-center"><p>Belum ada transaksi lapangan.</p></td>
                     </tr>
                     <?php } ?>
                 </table>
@@ -265,14 +265,14 @@
                         <th class="text-center" style="width:10%">#</th>
                         <th style="width:30%">Tanggal</th>
                         <th style="width:30%">Keterangan</th>
-                        <th class="text-end" style="width:30%">Nominal</th>
+                        <th class="text-end" style="width:30%">Harga</th>
                     </tr>
                     <?php
                     $no = 1;
                     if(!empty($data['tll'])) {
                         foreach($data['tll'] as $tll) {
                             $tanggal = format_tanggal($tll['tanggal_tll']);
-                            $rupiah = format_rupiah($tll['nominal_tll']);
+                            $rupiah = format_rupiah($tll['harga_tll']);
                     ?>
                     <tr>
                         <td class="text-center"><?= $no++ ?>.</td>
@@ -282,7 +282,7 @@
                     </tr>
                     <?php } } else { ?>
                     <tr>
-                        <td colspan="4" class="text-center"><h6>Belum ada transaksi lainnya.</h6></td>
+                        <td colspan="4" class="text-center"><p>Belum ada transaksi lainnya.</p></td>
                     </tr>
                     <?php } ?>
                 </table>

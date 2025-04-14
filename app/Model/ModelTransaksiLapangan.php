@@ -54,13 +54,8 @@ class ModelTransaksiLapangan {
     public function detail($id_tl) {
         $query = $this->db->query("SELECT * FROM " . $this->table . " WHERE id_tl = :id_tl");
         $this->db->bind("id_tl", $id_tl);
-        $tl = $this->db->single();
-
-        if ($tl) {
-            return $tl;
-        } else {
-            return null;
-        }
+        
+        return $this->db->single();
     }
 
     public function ubah($data) {

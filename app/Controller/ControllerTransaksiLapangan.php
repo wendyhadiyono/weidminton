@@ -20,16 +20,12 @@ use App\Config\Controller;
 
 class ControllerTransaksiLapangan extends Controller {
     public function transaksi_lapangan() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profik klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total lapangan
         $total_lapangan = $this->model('ModelData')->totalLapangan();
 
-        // Pemanggilan "ModelTransaksiLapangan" untuk menampilkan semua transaksi lapangan
         $tl = $this->model('ModelTransaksiLapangan')->tampilSemua();
 
         $data = [
@@ -61,7 +57,7 @@ class ControllerTransaksiLapangan extends Controller {
         if ($tambah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah ditambahkan!'
+                'pesan' => 'Transaksi telah ditambahkan'
             ];
             echo json_encode($res);
 
@@ -83,14 +79,13 @@ class ControllerTransaksiLapangan extends Controller {
         if ($id_tl) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi lapangan!',
+                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi lapangan',
                 'data' => $id_tl
             ];
             echo json_encode($res);
 
             return false;
-        }
-        else {
+        } else {
             $res = [
                 'status' => 404,
                 'pesan' => 'ID transaksi lapangan tidak ditemukan!'
@@ -117,7 +112,7 @@ class ControllerTransaksiLapangan extends Controller {
         if ($ubah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah diubah!'
+                'pesan' => 'Transaksi telah diubah'
             ];
             echo json_encode($res);
 
@@ -139,13 +134,12 @@ class ControllerTransaksiLapangan extends Controller {
         if ($hapus) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah dihapus!'
+                'pesan' => 'Transaksi telah dihapus'
             ];
             echo json_encode($res);
 
             return false;
-        }
-        else {
+        } else {
             $res = [
                 'status' => 500,
                 'pesan' => 'Transaksi gagal dihapus!'

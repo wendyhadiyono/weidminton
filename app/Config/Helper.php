@@ -14,7 +14,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-// Helper untuk mengubah format tanggal menjadi d/m/Y
 if (!function_exists('format_tanggal')) {
     function format_tanggal(?string $tanggal): ?string {
         if (empty($tanggal)) {

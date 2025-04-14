@@ -43,16 +43,19 @@ class ModelAnggota {
         return $this->db->rowCount();
     }
 
+    public function cekNama($nama) {
+        $this->db->query("SELECT * FROM " . $this->table . " WHERE nama = :nama");
+        $this->db->bind(":nama", $nama);
+        $this->db->execute();
+        
+        return $this->db->single();
+    }
+
     public function detail($id_anggota) {
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_anggota = :id_anggota");
         $this->db->bind("id_anggota", $id_anggota);
-        $anggota = $this->db->single();
-        
-        if ($anggota) {
-            return $anggota;
-        } else {
-            return null;
-        }
+
+        return $this->db->single();
     }
 
     public function ubah($data) {
@@ -64,14 +67,6 @@ class ModelAnggota {
         $this->db->execute();
 
         return $this->db->rowCount();
-    }
-
-    public function cekNama($nama) {
-        $this->db->query("SELECT * FROM " . $this->table . " WHERE nama = :nama");
-        $this->db->bind(":nama", $nama);
-        $this->db->execute();
-        
-        return $this->db->single();
     }
 
     public function hapus($id_anggota) {

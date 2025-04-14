@@ -50,4 +50,55 @@ class ModelPengaturan {
 
         return $profil_klub + $anggota;
     }
+
+    public function cadangkan() {
+        $fileName = 'weidminton-' . date('d-m-Y') . '.sql';
+        $filePath = __DIR__ . '/../Cadangan/' . $fileName;
+
+        $file = fopen($filePath, 'w');
+
+        fwrite($file, "-- Dumping data from database\n");
+        fwrite($file, "-- Generated on " . date('Y-m-d H:i:s') . "\n\n");
+
+        $this->db->query("SHOW TABLES");
+        $tables = $this->db->resultSet();
+
+        foreach ($tables as $table) {
+            $tableName = $table['Tables_in_' . DB_NAME];
+
+            fwrite($file, "DROP TABLE IF EXISTS `$tableName`;\n");
+
+            $this->db->query("SHOW CREATE TABLE `$tableName`");
+            $createTable = $this->db->single();
+            fwrite($file, $createTable['Create Table'] . ";\n\n");
+
+            $this->db->query("SELECT * FROM `$tableName`");
+            $result = $this->db->resultSet();
+            foreach ($result as $row) {
+                $sql = "INSERT INTO `$tableName` (";
+                $sql .= implode(", ", array_map(function($col) { return "`$col`"; }, array_keys($row))) . ") VALUES (";
+                $sql .= "'" . implode("', '", array_map(function($value) {
+                    return $this->db->dbh->quote($value);
+                }, array_values($row))) . "');\n";
+                fwrite($file, $sql);
+            }
+
+            fwrite($file, "\n");
+        }
+
+        fclose($file);
+
+        return $filePath;
+    }
+
+    public function hapus() {
+        $tables = ['absensi_anggota', 'absensi_bola_lapangan', 'anggota', 'paket_main', 'transaksi_anggota', 'transaksi_bola', 'transaksi_lainnya', 'transaksi_lapangan'];
+
+        foreach ($tables as $table) {
+            $this->db->query("DELETE FROM $table");
+            $this->db->execute();
+        }
+
+        return true;
+    }
 }

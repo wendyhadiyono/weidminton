@@ -18,6 +18,24 @@ namespace App\Config;
 
 class AuthMiddleware implements Middleware {
     function before(): void {
+
+        if ($_SESSION['ingat_saya'] == 1) {
+            $waktu_sesi = 86400;
+        } else {
+            $waktu_sesi = 3600;
+        }
+
+        if (isset($_SESSION['LAST_ACTIVITY'])) {
+            if (time() - $_SESSION['LAST_ACTIVITY'] > $waktu_sesi) {
+                session_unset();
+                session_destroy();
+                header('Location: ' . BASEURL . "/autentikasi");
+                exit();
+            }
+        }
+
+        $_SESSION['LAST_ACTIVITY'] = time();
+
         if(!isset($_SESSION['id_admin'])) {
             header('Location: ' . BASEURL . "/autentikasi");
             exit();

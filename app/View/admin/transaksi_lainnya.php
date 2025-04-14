@@ -45,7 +45,7 @@
                                                     <th>#</th>
                                                     <th>Tanggal</th>
                                                     <th>Keterangan</th>
-                                                    <th class="text-end">Nominal</th>
+                                                    <th class="text-end">Harga</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -57,12 +57,12 @@
                                                     <td><?= $no++; ?>.</td>
                                                     <td><?= format_tanggal($tll['tanggal_tll']) ?></td>
                                                     <td><?= $tll['keterangan_tll'] ?></td>
-                                                    <td class="text-end"><?= format_rupiah($tll['nominal_tll']) ?></td>
+                                                    <td class="text-end"><?= format_rupiah($tll['harga_tll']) ?></td>
                                                     <td>
                                                         <div class="btn-group">
                                                             <button type="button" class="btn btn-info dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Pilih </button>
                                                             <ul class="dropdown-menu">
-                                                                <li><a href="<?= BASEURL ?>/admin/transaksi_lainnya/ubah/<?= $tll['id_tll'] ?>" class="dropdown-item tombolUbahTLL" data-id-transaksi-lainnya="<?= $tll['id_tll'] ?>"data-bs-toggle="modal" data-bs-target="#modalUbahTLL">Ubah</a></li>
+                                                                <li><a href="<?= BASEURL ?>/admin/transaksi_lainnya/ubah/<?= $tll['id_tll'] ?>" class="dropdown-item tombolUbahTLL" data-id-transaksi-lainnya="<?= $tll['id_tll'] ?>" data-bs-toggle="modal" data-bs-target="#modalUbahTLL">Ubah</a></li>
                                                                 <li><a href="<?= BASEURL ?>/admin/transaksi_lainnya/hapus/<?= $tll['id_tll'] ?>" class="dropdown-item tombolHapusTLL" data-id-transaksi-lainnya="<?= $tll['id_tll'] ?>">Hapus</a></li>
                                                             </ul>
                                                         </div>
@@ -96,8 +96,8 @@
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" name="nominal_tll" placeholder="">
-                                                <label for="nominal_tll">Nominal</label>
+                                                <input type="text" class="form-control" name="harga_tll" placeholder="">
+                                                <label for="harga_tll">Harga</label>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -112,7 +112,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>
@@ -138,8 +138,8 @@
                                         </div>
                                         <div class="input-group mb-3">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" name="nominal_tll" id="nominal_tll" placeholder="">
-                                                <label for="nominal_tll">Nominal</label>
+                                                <input type="text" class="form-control" name="harga_tll" id="harga_tll" placeholder="">
+                                                <label for="harga_tll">Harga</label>
                                             </div>
                                         </div>
                                         <div class="input-group mb-3">
@@ -154,7 +154,7 @@
                                     </form>
                                 </div>
                                 <div class="modal-footer bg-light">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                                 </div>
                             </div>
                         </div>

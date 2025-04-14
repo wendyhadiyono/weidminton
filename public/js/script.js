@@ -15,120 +15,65 @@
 const BASE_URL = "http://localhost/weidminton/public/";
 
 /*
-// ANGGOTA
+// ABSENSI
 */
 
-// Tambah Nominal Transaksi Anggota
-$(document).on('submit', '#formTambahNTA', function (e) {
+// Tambah Absensi Anggota
+$(document).on('submit', '#formAbsensi', function (e) {
     e.preventDefault();
     var formData = new FormData(this);
-    formData.append("tambah_nominal_ta", true)
+    formData.append("tambah_absensi", true)
     $.ajax({
         type: "POST",
-        url: BASE_URL + "admin/transaksi_anggota/tambah_nominal",
+        url: BASE_URL + "admin/absensi/tambah",
         data: formData,
         processData: false,
         contentType: false,
         success: function (response) {
             var res = jQuery.parseJSON(response);
             if(res.status == 422) {
-                document.getElementById('errorTambahNTA').style.display='block';
-                $('#errorTambahNTA').text(res.pesan);
+                document.getElementById('errorAbsensi').style.display='block';
+                $('#errorAbsensi').text(res.pesan);
             } else if(res.status == 200) {
-                document.getElementById('errorTambahNTA').style.display='none';
-                $('#modalTambahNTA').modal('hide');
-                $('#formTambahNTA')[0].reset();
+                document.getElementById('errorAbsensi').style.display='none';
+                $('#modalAbsensi').modal('hide');
+                $('#formAbsensi')[0].reset();
                 var delay = alertify.get('notifier','delay');
                 alertify.set('notifier','position', 'top-center');
                 alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
-                $('#formTambahTA').load(location.href + " #formTambahTA");
-                $('#tabelNTA').load(location.href + " #tabelNTA");
+                $('#tabelAbsensi').load(location.href + " #tabelAbsensi");
+                $('#tabelAbsensiAnggota').load(location.href + " #tabelAbsensiAnggota");
+                $('.dataBola').load(location.href + " .dataBola");
+                $('.dataLapangan').load(location.href + " .dataLapangan");
             }
         }
     });
 });
 
-// Tombol Ubah Nominal Transaksi Anggota
-$(document).on('click', '.tombolUbahNTA', function () {
-    const id_nta = $(this).data('id-nta');
+// Tombol Detail Absensi
+$(document).on('click', '.tombolDetailAbsensi', function () {
+    const tanggal_absensi = $(this).data('tanggal-absensi');
 
     $.ajax({
-        url: BASE_URL + "admin/transaksi_anggota/detail_nominal",
-        data: {id_nta : id_nta},
+        url: BASE_URL + "admin/absensi/detail",
+        data: {tanggal_absensi: tanggal_absensi},
         method: "POST",
         success: function (response) {
             var res = jQuery.parseJSON(response);
-            if(res.status == 422) {
+            if(res.status == 404) {
                 alert(res.pesan);
             } else if(res.status == 200) {
-                $('#id_nta').val(res.data.id_nta);
-                $('#jenis').val(res.data.jenis);
-                $('#jumlah_main').val(res.data.jumlah_main);
-                $('#nominal').val(res.data.nominal);
+                $('#detailAbsensi').empty();
+                res.data.forEach(function(absensi) {
+                    $('#detailAbsensi').append(`
+                        <li class="list-group-item bg-white">${absensi.nama}</li>
+                    `);
+                });
+                $('#modalDetailAbsensi').modal('show');
             }
         }
     });
 });
-
-// Ubah Transaksi Anggota
-$(document).on('submit', '#formUbahNTA', function (e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-    formData.append("ubah_nominal_transaksi_anggota", true)
-    $.ajax({
-        type: "POST",
-        url: BASE_URL + "admin/transaksi_anggota/ubah_nominal",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            var res = jQuery.parseJSON(response);
-            if(res.status == 422) {
-                document.getElementById('errorUbahNTA').style.display='block';
-                $('#errorUbahNTA').text(res.pesan);
-            } else if(res.status == 200) {
-                document.getElementById('errorUbahNTA').style.display='none';
-                $('#modalUbahNTA').modal('hide');
-                var delay = alertify.get('notifier','delay');
-                alertify.set('notifier','position', 'top-center');
-                alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
-                $('#formUbahNTA')[0].reset();
-                $('#formTambahTA').load(location.href + " #formTambahTA");
-                $('#tabelNTA').load(location.href + " #tabelNTA");
-            }
-        }
-    });
-});
-
-// Hapus Nominal Transaksi Anggota
-$(document).on('click', '.tombolHapusNTA', function (e) {
-    e.preventDefault();
-    if(confirm('Konfirmasi penghapusan nominal transaksi anggota?')){
-        const id_nta = $(this).data('id-nta');
-        $.ajax({
-            type: "POST",
-            url: BASE_URL + "admin/transaksi_anggota/hapus_nominal",
-            data: {
-                'hapus_nominal_transaksi_anggota': true,
-                'id_nta': id_nta
-            },
-            success: function (response) {
-                var res = jQuery.parseJSON(response);
-                if(res.status == 500) {
-                    alert(res.pesan);
-                } else {
-                    alertify.set('notifier','position', 'top-center');
-                    var delay = alertify.get('notifier','delay');
-                    alertify.set('notifier','position', 'top-center');
-                    alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
-                    $('#formTambahTA').load(location.href + " #formTambahTA");
-                    $('#tabelNTA').load(location.href + " #tabelNTA");
-                }
-            }
-        });
-    }
-});
-
 
 /*
 // ANGGOTA
@@ -252,6 +197,118 @@ $(document).on('click', '.tombolHapusAnggota', function (e) {
 });
 
 /*
+// PAKET MAIN
+*/
+
+// Tambah Paket Main
+$(document).on('submit', '#formTambahPaket', function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    formData.append("tambah_paket", true)
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + "admin/paket_main/tambah",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            var res = jQuery.parseJSON(response);
+            if(res.status == 422) {
+                document.getElementById('errorTambahPaket').style.display='block';
+                $('#errorTambahPaket').text(res.pesan);
+            } else if(res.status == 200) {
+                document.getElementById('errorTambahPaket').style.display='none';
+                $('#modalTambahPaket').modal('hide');
+                $('#formTambahPaket')[0].reset();
+                var delay = alertify.get('notifier','delay');
+                alertify.set('notifier','position', 'top-center');
+                alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
+                $('#tabelPaket').load(location.href + " #tabelPaket");
+            }
+        }
+    });
+});
+
+// Tombol Ubah Paket Main
+$(document).on('click', '.tombolUbahPaket', function () {
+    const id_pm = $(this).data('id-pm');
+
+    $.ajax({
+        url: BASE_URL + "admin/paket_main/detail",
+        data: {id_pm : id_pm},
+        method: "POST",
+        success: function (response) {
+            var res = jQuery.parseJSON(response);
+            if(res.status == 422) {
+                alert(res.pesan);
+            } else if(res.status == 200) {
+                $('#id_pm').val(res.data.id_pm);
+                $('#jenis').val(res.data.jenis);
+                $('#jumlah_main').val(res.data.jumlah_main);
+                $('#harga').val(res.data.harga);
+            }
+        }
+    });
+});
+
+// Ubah Paket Main
+$(document).on('submit', '#formUbahPaket', function (e) {
+    e.preventDefault();
+    var formData = new FormData(this);
+    formData.append("ubah_paket", true)
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + "admin/paket_main/ubah",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            var res = jQuery.parseJSON(response);
+            if(res.status == 422) {
+                document.getElementById('errorUbahPaket').style.display='block';
+                $('#errorUbahPaket').text(res.pesan);
+            } else if(res.status == 200) {
+                document.getElementById('errorUbahPaket').style.display='none';
+                $('#modalUbahPaket').modal('hide');
+                var delay = alertify.get('notifier','delay');
+                alertify.set('notifier','position', 'top-center');
+                alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
+                $('#formUbahPaket')[0].reset();
+                $('#tabelPaket').load(location.href + " #tabelPaket");
+            }
+        }
+    });
+});
+
+// Hapus Paket Main
+$(document).on('click', '.tombolHapusPaket', function (e) {
+    e.preventDefault();
+    if(confirm('Konfirmasi penghapusan paket main?')){
+        const id_pm = $(this).data('id-pm');
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + "admin/paket_main/hapus",
+            data: {
+                'hapus_paket': true,
+                'id_pm': id_pm
+            },
+            success: function (response) {
+                var res = jQuery.parseJSON(response);
+                if(res.status == 500) {
+                    alert(res.pesan);
+                } else {
+                    alertify.set('notifier','position', 'top-center');
+                    var delay = alertify.get('notifier','delay');
+                    alertify.set('notifier','position', 'top-center');
+                    alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
+                    $('#tabelPaket').load(location.href + " #tabelPaket");
+                }
+            }
+        });
+    }
+});
+
+/*
 // TRANSAKSI ANGGOTA
 */
 
@@ -259,8 +316,8 @@ $(document).on('click', '.tombolHapusAnggota', function (e) {
 $(document).on('submit', '#formTambahTA', function (e) {
     e.preventDefault();
 
-    var nominalSelect = $('#nominal_ta');
-    var selectedOption = nominalSelect.find('option:selected');
+    var hargaSelect = $('#harga_ta');
+    var selectedOption = hargaSelect.find('option:selected');
     
     var jumlahMain = selectedOption.data('jumlah');
 
@@ -308,7 +365,7 @@ $(document).on('click', '.tombolUbahTA', function () {
             } else if(res.status == 200) {
                 $('#id_ta').val(res.data.id_ta);
                 $('#nama_ta').val(res.data.nama_ta);
-                $('#nominal_ta').val(res.data.nominal_ta);
+                $('#harga_ta').val(res.data.harga_ta);
                 $('#tanggal_ta').val(res.data.tanggal_ta);
             }
         }
@@ -654,7 +711,7 @@ $(document).on('click', '.tombolUbahTLL', function () {
             } else if(res.status == 200) {
                 $('#id_tll').val(res.data.id_tll);
                 $('#keterangan_tll').val(res.data.keterangan_tll);
-                $('#nominal_tll').val(res.data.nominal_tll);
+                $('#harga_tll').val(res.data.harga_tll);
                 $('#tanggal_tll').val(res.data.tanggal_tll);
             }
         }
@@ -718,97 +775,6 @@ $(document).on('click', '.tombolHapusTLL', function (e) {
             }
         });
     }
-});
-
-/*
-// ABSENSI
-*/
-
-// Tambah Absensi Anggota
-$(document).on('submit', '#formAbsensi', function (e) {
-    e.preventDefault();
-    var formData = new FormData(this);
-    formData.append("tambah_absensi", true)
-    $.ajax({
-        type: "POST",
-        url: BASE_URL + "admin/absensi/tambah",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function (response) {
-            var res = jQuery.parseJSON(response);
-            if(res.status == 422) {
-                document.getElementById('errorAbsensi').style.display='block';
-                $('#errorAbsensi').text(res.pesan);
-            } else if(res.status == 200) {
-                document.getElementById('errorAbsensi').style.display='none';
-                $('#modalAbsensi').modal('hide');
-                $('#formAbsensi')[0].reset();
-                var delay = alertify.get('notifier','delay');
-                alertify.set('notifier','position', 'top-center');
-                alertify.notify(res.pesan, 'success', 5, function(){console.log('dismissed');});
-                $('#tabelAbsensi').load(location.href + " #tabelAbsensi");
-                $('#tabelAbsensiAnggota').load(location.href + " #tabelAbsensiAnggota");
-                $('.dataBola').load(location.href + " .dataBola");
-                $('.dataLapangan').load(location.href + " .dataLapangan");
-            }
-        }
-    });
-});
-
-// Tombol Detail Absensi
-$(document).on('click', '.tombolDetailAbsensi', function () {
-    const tanggal_absensi = $(this).data('tanggal-absensi');
-
-    $.ajax({
-        url: BASE_URL + "admin/absensi/detail",
-        data: {tanggal_absensi: tanggal_absensi},
-        method: "POST",
-        success: function (response) {
-            var res = jQuery.parseJSON(response);
-            if(res.status == 404) {
-                alert(res.pesan);
-            } else if(res.status == 200) {
-                $('#detailAbsensi').empty();
-                res.data.forEach(function(absensi) {
-                    $('#detailAbsensi').append(`
-                        <li class="list-group-item bg-white">${absensi.nama}</li>
-                    `);
-                });
-                $('#modalDetailAbsensi').modal('show');
-            }
-        }
-    });
-});
-
-/*
-// CHART PIE
-*/
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Pie chart
-    new Chart(document.getElementById("chartjs-dashboard-pie"), {
-        type: "pie",
-        data: {
-            labels: ["Pemasukan", "Pengeluaran"],
-            datasets: [{
-                data: [625000, 208000],
-                backgroundColor: [
-                    window.theme.success,
-                    window.theme.danger
-                ],
-                borderWidth: 5
-            }]
-        },
-        options: {
-            responsive: !window.MSInputMethodContext,
-            maintainAspectRatio: false,
-            legend: {
-                display: false
-            },
-            cutoutPercentage: 75
-        }
-    });
 });
 
 /*

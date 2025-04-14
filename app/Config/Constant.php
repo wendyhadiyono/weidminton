@@ -18,10 +18,10 @@
 define("BASEURL", "http://localhost/weidminton/public"); // ganti dengan alamat anda sendiri
 
 // DATABASE
-define("DB_HOST", "localhost"); // ganti dengan server database Anda sendiri
-define("DB_USER", "root"); // ganti dengan nama pengguna database Anda sendiri
-define("DB_PASS", ""); // ganti dengan sandi database Anda sendiri
-define("DB_NAME", "weidminton"); // ganti dengan nama database Anda sendiri
+define("DB_HOST", "localhost");     // ganti dengan server database Anda sendiri
+define("DB_USER", "root");          // ganti dengan nama pengguna database Anda sendiri
+define("DB_PASS", "");              // ganti dengan sandi database Anda sendiri
+define("DB_NAME", "weidminton");    // ganti dengan nama database Anda sendiri
 
 // VERSI
-define("VERSI", "1.0.0-beta.1"); // untuk tujuan Version Control System, abaikan saja ini
+define("VERSI", "1.0.0");     // untuk tujuan Version Control System, abaikan saja ini

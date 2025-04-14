@@ -20,16 +20,12 @@ use App\Config\Controller;
 
 class ControllerTransaksiLainnya extends Controller {
     public function transaksi_lainnya() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profik klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total kas
         $total_kas = $this->model('ModelData')->totalKas();
 
-        // Pemanggilan "ModelTransaksiLainnya" untuk menampilkan semua transaksi lainnya
         $tll = $this->model('ModelTransaksiLainnya')->tampilSemua();
 
         $data = [
@@ -46,7 +42,7 @@ class ControllerTransaksiLainnya extends Controller {
     }
 
     public function tambah_tll() {
-        if ($_POST['keterangan_tll'] == NULL || $_POST['nominal_tll'] == NULL || $_POST['tanggal_tll'] == NULL) {
+        if ($_POST['keterangan_tll'] == NULL || $_POST['harga_tll'] == NULL || $_POST['tanggal_tll'] == NULL) {
             $res = [
                 'status' => 422,
                 'pesan' => 'Data wajib dilengkapi!'
@@ -61,7 +57,7 @@ class ControllerTransaksiLainnya extends Controller {
         if ($tambah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah ditambahkan!'
+                'pesan' => 'Transaksi telah ditambahkan'
             ];
             echo json_encode($res);
 
@@ -83,14 +79,13 @@ class ControllerTransaksiLainnya extends Controller {
         if ($id_tll) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi lainnya!',
+                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi lainnya',
                 'data' => $id_tll
             ];
             echo json_encode($res);
 
             return false;
-        }
-        else {
+        } else {
             $res = [
                 'status' => 404,
                 'pesan' => 'ID transaksi lainnya tidak ditemukan!'
@@ -102,7 +97,7 @@ class ControllerTransaksiLainnya extends Controller {
     }
 
     public function ubah_tll() {
-        if ($_POST['keterangan_tll'] == NULL || $_POST['nominal_tll'] == NULL || $_POST['tanggal_tll'] == NULL) {
+        if ($_POST['keterangan_tll'] == NULL || $_POST['harga_tll'] == NULL || $_POST['tanggal_tll'] == NULL) {
             $res = [
                 'status' => 422,
                 'pesan' => 'Data wajib dilengkapi!'
@@ -117,7 +112,7 @@ class ControllerTransaksiLainnya extends Controller {
         if ($ubah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah diubah!'
+                'pesan' => 'Transaksi telah diubah'
             ];
             echo json_encode($res);
 
@@ -139,7 +134,7 @@ class ControllerTransaksiLainnya extends Controller {
         if ($hapus) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah dihapus!'
+                'pesan' => 'Transaksi telah dihapus'
             ];
             echo json_encode($res);
 

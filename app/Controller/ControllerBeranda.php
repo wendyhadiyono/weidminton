@@ -20,19 +20,15 @@ use App\Config\Controller;
 
 class ControllerBeranda extends Controller {
     public function index() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total kas, anggota, bola dan lapangan
         $total_kas = $this->model('ModelData')->totalKas();
         $total_anggota = $this->model('ModelData')->totalAnggota();
         $total_bola = $this->model('ModelData')->totalBola();
         $total_lapangan = $this->model('ModelData')->totalLapangan();
 
-        // Pemanggilan "ModelAnggota" untuk menampilkan semua anggota
         $anggota = $this->model('ModelAnggota')->tampilSemua();
 
-        // Pemanggilan "ModelTransaksiAnggota", "ModelTransaksiBola", "ModelTransaksiLainnya", "ModelTransaksiLapangan" untuk menampilkan semua transaksi
         $ta = $this->model('ModelTransaksiAnggota')->tampilBeranda();
         $tb = $this->model('ModelTransaksiBola')->tampilBeranda();
         $tll = $this->model('ModelTransaksiLainnya')->tampilBeranda();

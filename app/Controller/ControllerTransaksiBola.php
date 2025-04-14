@@ -20,16 +20,12 @@ use App\Config\Controller;
 
 class ControllerTransaksiBola extends Controller {
     public function transaksi_bola() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profik klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total bola
         $total_bola = $this->model('ModelData')->totalBola();
 
-        // Pemanggilan "ModelTransaksiBola" untuk menampilkan semua transaksi bola
         $tb = $this->model('ModelTransaksiBola')->tampilSemua();
 
         $data = [
@@ -61,7 +57,7 @@ class ControllerTransaksiBola extends Controller {
         if ($tambah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah ditambahkan!'
+                'pesan' => 'Transaksi telah ditambahkan'
             ];
             echo json_encode($res);
 
@@ -83,7 +79,7 @@ class ControllerTransaksiBola extends Controller {
         if ($id_tb) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi bola!',
+                'pesan' => 'Data berhasil ditampilkan sesuai ID transaksi bola',
                 'data' => $id_tb
             ];
             echo json_encode($res);
@@ -116,7 +112,7 @@ class ControllerTransaksiBola extends Controller {
         if ($ubah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah diubah!'
+                'pesan' => 'Transaksi telah diubah'
             ];
             echo json_encode($res);
 
@@ -138,7 +134,7 @@ class ControllerTransaksiBola extends Controller {
         if ($hapus) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Transaksi telah dihapus!'
+                'pesan' => 'Transaksi telah dihapus'
             ];
             echo json_encode($res);
 

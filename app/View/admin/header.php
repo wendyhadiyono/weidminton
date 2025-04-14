@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/favicon.png">
+	<link rel="icon" type="image/x-icon" href="<?= BASEURL ?>/img/aset/favicon.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
 	<link rel="stylesheet" href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css">
@@ -32,12 +32,17 @@
 					</li>
 					<li class="sidebar-item <?= ($_SERVER['PATH_INFO'] == '/admin/absensi') ? 'active' : ''; ?>">
 						<a class="sidebar-link" href="<?= BASEURL ?>/admin/absensi">
-							<i class="align-middle" data-feather="list"></i> <span class="align-middle">Absensi</span>
+							<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Absensi</span>
 						</a>
 					</li>
 					<li class="sidebar-item <?= ($_SERVER['PATH_INFO'] == '/admin/laporan') ? 'active' : ''; ?>">
 						<a class="sidebar-link" href="<?= BASEURL ?>/admin/laporan">
 							<i class="align-middle" data-feather="file-text"></i> <span class="align-middle">Laporan</span>
+						</a>
+					</li>
+					<li class="sidebar-item <?= ($_SERVER['PATH_INFO'] == '/admin/paket_main') ? 'active' : ''; ?>">
+						<a class="sidebar-link" href="<?= BASEURL ?>/admin/paket_main">
+							<i class="align-middle" data-feather="package"></i> <span class="align-middle">Paket Main</span>
 						</a>
 					</li>
 					<li class="sidebar-header">Transaksi</li>

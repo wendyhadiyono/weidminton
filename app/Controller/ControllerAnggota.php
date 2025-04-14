@@ -20,16 +20,12 @@ use App\Config\Controller;
 
 class ControllerAnggota extends Controller {
     public function anggota() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
-        // Pemanggilan "ModelData" untuk menampilkan infografik total anggota
         $total_anggota = $this->model('ModelData')->totalAnggota();
 
-        // Pemanggilan "ModelAnggota" untuk menampilkan semua anggota
         $anggota = $this->model('ModelAnggota')->tampilSemua();
 
         $data = [
@@ -46,7 +42,7 @@ class ControllerAnggota extends Controller {
     }
 
     public function tambah_anggota() {
-        if (empty($_POST['nama']) || $_POST['jenis_kelamin'] == 'Pilih' || $_POST['domisili'] == 'Pilih') {
+        if ($_POST['nama'] == NULL || $_POST['jenis_kelamin'] == 'Pilih' || $_POST['domisili'] == 'Pilih') {
             $res = [
                 'status' => 422,
                 'pesan' => 'Data wajib dilengkapi!'
@@ -56,9 +52,9 @@ class ControllerAnggota extends Controller {
             return false;
         }
 
-        $cekNama = $this->model('ModelAnggota')->cekNama($_POST['nama']);
+        $cek_nama = $this->model('ModelAnggota')->cekNama($_POST['nama']);
 
-        if ($cekNama) {
+        if ($cek_nama) {
             $res = [
                 'status' => 409,
                 'pesan' => 'Nama sudah digunakan oleh anggota lain!'
@@ -73,7 +69,7 @@ class ControllerAnggota extends Controller {
         if ($tambah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data telah ditambahkan!'
+                'pesan' => 'Anggota telah ditambahkan'
             ];
             echo json_encode($res);
 
@@ -81,7 +77,7 @@ class ControllerAnggota extends Controller {
         } else {
             $res = [
                 'status' => 500,
-                'pesan' => 'Data gagal ditambahkan!'
+                'pesan' => 'Anggota gagal ditambahkan!'
             ];
             echo json_encode($res);
 
@@ -95,7 +91,7 @@ class ControllerAnggota extends Controller {
         if ($id_anggota) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data berhasil ditampilkan sesuai ID anggota!',
+                'pesan' => 'Data berhasil ditampilkan sesuai ID anggota',
                 'data' => $id_anggota
             ];
             echo json_encode($res);
@@ -113,7 +109,7 @@ class ControllerAnggota extends Controller {
     }
 
     public function ubah_anggota() {
-        if (empty($_POST['nama']) || $_POST['jenis_kelamin'] == 'Pilih' || $_POST['domisili'] == 'Pilih') {
+        if ($_POST['nama'] == NULL || $_POST['jenis_kelamin'] == 'Pilih' || $_POST['domisili'] == 'Pilih') {
             $res = [
                 'status' => 422,
                 'pesan' => 'Data wajib dilengkapi!'
@@ -128,7 +124,7 @@ class ControllerAnggota extends Controller {
         if ($ubah) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data telah diubah!'
+                'pesan' => 'Anggota telah diubah'
             ];
             echo json_encode($res);
 
@@ -136,7 +132,7 @@ class ControllerAnggota extends Controller {
         } else {
             $res = [
                 'status' => 500,
-                'pesan' => 'Data gagal diubah!'
+                'pesan' => 'Anggota gagal diubah!'
             ];
             echo json_encode($res);
 
@@ -150,7 +146,7 @@ class ControllerAnggota extends Controller {
         if ($hapus) {
             $res = [
                 'status' => 200,
-                'pesan' => 'Data telah dihapus!'
+                'pesan' => 'Anggota telah dihapus'
             ];
             echo json_encode($res);
 
@@ -158,7 +154,7 @@ class ControllerAnggota extends Controller {
         } else {
             $res = [
                 'status' => 500,
-                'pesan' => 'Data gagal dihapus!'
+                'pesan' => 'Anggota gagal dihapus!'
             ];
             echo json_encode($res);
 

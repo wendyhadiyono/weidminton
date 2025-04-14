@@ -39,10 +39,10 @@ class ModelTransaksiLainnya {
     }
 
     public function tambah($data) {
-        $this->db->query("INSERT INTO " . $this->table . " (keterangan_tll, nominal_tll, tanggal_tll)
-                    VALUES (:keterangan_tll, :nominal_tll, :tanggal_tll)");
+        $this->db->query("INSERT INTO " . $this->table . " (keterangan_tll, harga_tll, tanggal_tll)
+                    VALUES (:keterangan_tll, :harga_tll, :tanggal_tll)");
         $this->db->bind("keterangan_tll", $data['keterangan_tll']);
-        $this->db->bind("nominal_tll", $data['nominal_tll']);
+        $this->db->bind("harga_tll", $data['harga_tll']);
         $this->db->bind("tanggal_tll", $data['tanggal_tll']);
         $this->db->execute();
 
@@ -52,20 +52,15 @@ class ModelTransaksiLainnya {
     public function detail($id_tll) {
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_tll = :id_tll");
         $this->db->bind("id_tll", $id_tll);
-        $tll = $this->db->single();
 
-        if ($tll) {
-            return $tll;
-        } else {
-            return null;
-        }
+        return $this->db->single();
     }
 
     public function ubah($data) {
-        $this->db->query("UPDATE " . $this->table . " SET keterangan_tll = :keterangan_tll, nominal_tll = :nominal_tll, tanggal_tll = :tanggal_tll WHERE id_tll = :id_tll");
+        $this->db->query("UPDATE " . $this->table . " SET keterangan_tll = :keterangan_tll, harga_tll = :harga_tll, tanggal_tll = :tanggal_tll WHERE id_tll = :id_tll");
         $this->db->bind("id_tll", $data['id_tll']);
         $this->db->bind("keterangan_tll", $data['keterangan_tll']);
-        $this->db->bind("nominal_tll", $data['nominal_tll']);
+        $this->db->bind("harga_tll", $data['harga_tll']);
         $this->db->bind("tanggal_tll", $data['tanggal_tll']);
         $this->db->execute();
 

@@ -20,10 +20,8 @@ use App\Config\Controller;
 
 class ControllerProfil extends Controller {
     public function profil() {
-        // Pemanggilan "ModelPengaturan" untuk menampilkan profil klub
         $profil_klub = $this->model('ModelPengaturan')->tampilSemua();
 
-        // Pemanggilan "ModelProfil" untuk menampilkan profil admin
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
         $data = [
@@ -42,6 +40,8 @@ class ControllerProfil extends Controller {
             $_SESSION['pesan_gagal'] = "Data wajib dilengkapi!";
             header("Location: " . BASEURL . "/admin/profil");
         } else {
+            $profil_admin = $this->model('ModelProfil')->tampilSemua();
+            
             if (isset($_POST['avatar_base64']) && !empty($_POST['avatar_base64'])) {
                 $avatar_base64 = $_POST['avatar_base64'];
                 $avatar_base64 = preg_replace('/^data:image\/(png|jpeg);base64,/', '', $avatar_base64);
@@ -50,12 +50,14 @@ class ControllerProfil extends Controller {
                 $nama_file = uniqid() . '.png';
                 $jalur_file = 'img/' . $nama_file;
                 if (file_put_contents($jalur_file, $decodedData) === false) {
-                    $_SESSION['pesan_gagal'] = "Gagal menyimpan gambar.";
+                    $_SESSION['pesan_gagal'] = "Gagal menyimpan gambar";
                     header("Location: " . BASEURL . "/admin/profil");
                     exit;
                 }
                 
                 $_POST['file_avatar'] = $nama_file;
+            } else {
+                $_POST['file_avatar'] = $profil_admin['file_avatar'];
             }
             
             $ubah = $this->model('ModelProfil')->ubahProfil($_POST);
@@ -72,7 +74,6 @@ class ControllerProfil extends Controller {
     }
 
     public function ubah_sandi() {
-        // Pemanggilan "ModelProfil" untuk menampilkan kata sandi lama
         $profil_admin = $this->model('ModelProfil')->tampilSemua();
 
         $sandi_lama = $profil_admin['kata_sandi'];

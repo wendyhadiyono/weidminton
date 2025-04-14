@@ -38,61 +38,11 @@ class ModelTransaksiAnggota {
         return $this->db->resultSet();
     }
 
-    public function tampilNominalTA(){
-        $this->db->query("SELECT * FROM nominal_transaksi_anggota ORDER BY jumlah_main ASC");
-        $nta = $this->db->resultSet();
-
-        return $nta;
-    }
-
-    public function tambahNominalTA($data) {
-        $this->db->query("INSERT INTO nominal_transaksi_anggota (jenis, jumlah_main, nominal)
-                    VALUES (:jenis, :jumlah_main, :nominal)");
-        $this->db->bind("jenis", $data['jenis']);
-        $this->db->bind("jumlah_main", $data['jumlah_main']);
-        $this->db->bind("nominal", $data['nominal']);
-        $this->db->execute();
-
-        return $this->db->rowCount();
-    }
-
-    public function detailIdNTA($id_nta) {
-        $this->db->query("SELECT * FROM nominal_transaksi_anggota WHERE id_nta = :id_nta");
-        $this->db->bind("id_nta", $id_nta);
-        $nta = $this->db->single();
-        
-        if ($nta) {
-            return $nta;
-        } else {
-            return null;
-        }
-    }
-
-    public function ubahNTA($data) {
-        $this->db->query("UPDATE nominal_transaksi_anggota SET jenis = :jenis, jumlah_main = :jumlah_main, nominal = :nominal WHERE id_nta = :id_nta");
-        $this->db->bind("jenis", $data['jenis']);
-        $this->db->bind("jumlah_main", $data['jumlah_main']);
-        $this->db->bind("nominal", $data['nominal']);
-        $this->db->bind("id_nta", $data['id_nta']);
-        $this->db->execute();
-
-        return $this->db->rowCount();
-    }
-
-    public function hapusNTA($id_nta) {
-        $this->db->query("DELETE FROM nominal_transaksi_anggota WHERE id_nta = :id_nta");
-        $this->db->bind("id_nta", $id_nta);
-        $this->db->execute();
-
-        return $this->db->rowCount();
-    }
-
-    // Transaksi Anggota
     public function tambah($data) {
-        $this->db->query("INSERT INTO " . $this->table . " (nama_ta, nominal_ta, tanggal_ta)
-                    VALUES (:nama_ta, :nominal_ta, :tanggal_ta)");
+        $this->db->query("INSERT INTO " . $this->table . " (nama_ta, harga_ta, tanggal_ta)
+                    VALUES (:nama_ta, :harga_ta, :tanggal_ta)");
         $this->db->bind("nama_ta", $data['nama_ta']);
-        $this->db->bind("nominal_ta", $data['nominal_ta']);
+        $this->db->bind("harga_ta", $data['harga_ta']);
         $this->db->bind("tanggal_ta", $data['tanggal_ta']);
         $this->db->execute();
 
@@ -104,8 +54,8 @@ class ModelTransaksiAnggota {
         $jumlah_main = isset($data['jumlah_main']) ? intval($data['jumlah_main']) : 0;
         $sisa_main = intval($anggota['sisa_main']) + $jumlah_main;
 
-        $this->db->query("UPDATE anggota SET sisa_main = :sisa_main1 WHERE nama = :nama_ta");
-        $this->db->bind("sisa_main1", $sisa_main);
+        $this->db->query("UPDATE anggota SET sisa_main = :sisa_main WHERE nama = :nama_ta");
+        $this->db->bind("sisa_main", $sisa_main);
         $this->db->bind("nama_ta", $data['nama_ta']);
         $this->db->execute();
 
@@ -115,13 +65,8 @@ class ModelTransaksiAnggota {
     public function detail($id_ta) {
         $this->db->query("SELECT * FROM " . $this->table . " WHERE id_ta = :id_ta");
         $this->db->bind("id_ta", $id_ta);
-        $ta = $this->db->single();
-        
-        if ($ta) {
-            return $ta;
-        } else {
-            return null;
-        }
+
+        return $this->db->single();
     }
 
     public function ubah($data) {
